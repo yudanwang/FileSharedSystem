@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: WangYudan
-  Date: 2016/3/15
-  Time: 10:47
+  Date: 2016/3/16
+  Time: 22:51
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -26,14 +26,10 @@
     <![endif]-->
 </head>
 <body>
-<h1>File shared System</h1>
-
-<h3><a href="/artifact" type="button" class="btn btn-primary btn-sm">Artifact</a></h3>
-
-
-<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-
-
-<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<%--<form action="user/fileUpload" method="post" enctype="multipart/form-data">--%>
+<form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="fileUpload" />
+    <input type="submit" value="upload" />
+</form>
 </body>
 </html>>
