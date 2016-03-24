@@ -5,7 +5,9 @@ package com.framework.controller;
  */
 
 import com.framework.model.ArtifactEntity;
+import com.framework.model.CollectionEntity;
 import com.framework.repository.ArtifactRepository;
+import com.framework.repository.CollectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,6 +20,7 @@ import java.util.List;
 public class Maincontroller {
     @Autowired
     ArtifactRepository artifactRepository;
+    CollectionRepository collectionRepository;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
@@ -33,4 +36,5 @@ public class Maincontroller {
 
         return "artifact";
     }
+
 }

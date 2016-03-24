@@ -11,3 +11,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ArtifactRepository extends JpaRepository<ArtifactEntity, Integer>{
 }
+
