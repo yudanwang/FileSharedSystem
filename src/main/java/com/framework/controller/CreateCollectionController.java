@@ -1,14 +1,17 @@
 package com.framework.controller;
 
 
+import com.framework.model.ArtifactEntity;
 import com.framework.model.CollectionEntity;
 import com.framework.repository.CollectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -22,7 +25,12 @@ public class CreateCollectionController {
 
 
     @RequestMapping(method = RequestMethod.GET, value = "/collection")
-    public String provideUploadInfo(Model model) {
+    public String provideUploadInfo(ModelMap modelMap) {
+
+        List<CollectionEntity> collectionList = collectionRepository.findAll();
+        long c = collectionRepository.count();
+        modelMap.addAttribute("collectionList", collectionList);
+
         return "collection";
     }
 
@@ -35,14 +43,11 @@ public class CreateCollectionController {
             fileDir.mkdir();
 
             collectionEntity.setName(name);
-            System.out.print("1");
             int id = (int) (Math.random() * 1000);
-            System.out.print("2");
             collectionEntity.setId(id);
-            System.out.print("3");
+
             String key = getToken(10);
             collectionEntity.setKey(key);
-            System.out.print("4");
 
             collectionRepository.saveAndFlush(collectionEntity);
             return "redirect:/collection";

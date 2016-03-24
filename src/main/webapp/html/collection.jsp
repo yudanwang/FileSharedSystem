@@ -9,26 +9,37 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>FileSharedSystem</title>
 </head>
 <body>
 <div class="container">
     <h1>Collection Management</h1>
     <hr/>
 
-
-    <c:if test="${!empty collection}">
+    <h4> Create a new Collection </h4>
+    <form action="/collection" method="post" enctype="multipart/form-data">
+        <input type="text" name="txtCollection" />
+        <input type="submit" value="Create Collection" />
+    </form>
+    <hr/>
+    <c:if test="${!empty collectionList}">
         <table class="table table-bordered table-striped">
             <tr>
                 <th>id</th>
                 <th>name</th>
-
             </tr>
 
-            <c:forEach items="${collection}" var="collection">
+            <c:forEach items="${collectionList}" var="collection">
                 <tr>
-                    <td>${collection.id}</td>
+
+                   <td><img src="http://icons.iconseeker.com/png/fullsize/leopard-folder-variations/smooth-navy-blue.png" height="20" width="20"></td> <td>${collection.id}</td>
                     <td>${collection.name}</td>
+
+                    <td>
+                        <a href="/collecton/view${collection.id}" type="button" class="btn btn-sm btn-success">View</a>
+                        <a href="/artifact/delete/${collection.id}" type="button" class="btn btn-sm btn-warning">delete</a>
+                        <a href="/artifact/update/${collection.id}" type="button" class="btn btn-sm btn-warning">update</a>
+                    <td>
 
                 </tr>
             </c:forEach>
@@ -36,16 +47,9 @@
     </c:if>
 </div>
 
-
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 
-
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-<form action="/collection" method="post" enctype="multipart/form-data">
-    <input type="text" name="txtCollection" />
-    <input type="submit" value="Create Collection" />
-</form>
 
 </body>
 </html>
