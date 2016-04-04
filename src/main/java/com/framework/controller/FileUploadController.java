@@ -48,7 +48,6 @@ public class FileUploadController {
         System.out.println(file.getOriginalFilename());
 
         if (!file.isEmpty()) {
-
             String path = "D:/" + file.getOriginalFilename();
             File localFile = new File(path);
             try {
@@ -58,7 +57,6 @@ public class FileUploadController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
 
         artifactEntity.setName(file.getOriginalFilename());
@@ -69,7 +67,7 @@ public class FileUploadController {
         acEntity.setArtifactId(id);
         acEntity.setCollectionId(collectionId);
         arCoRepository.saveAndFlush(acEntity);
-        return "/admin/collection";
+        return "redirect:/admin/collection/view/" + collectionId;
     }
 }
 
