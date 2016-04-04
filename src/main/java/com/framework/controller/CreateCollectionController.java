@@ -1,14 +1,15 @@
 package com.framework.controller;
 
 
-import com.framework.model.ArtifactEntity;
 import com.framework.model.CollectionEntity;
 import com.framework.repository.CollectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.File;
 import java.util.List;
@@ -24,33 +25,33 @@ public class CreateCollectionController {
     CollectionRepository collectionRepository;
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "/collection")
+    @RequestMapping(method = RequestMethod.GET, value = "/admin/collection")
     public String provideUploadInfo(ModelMap modelMap) {
 
         List<CollectionEntity> collectionList = collectionRepository.findAll();
         long c = collectionRepository.count();
         modelMap.addAttribute("collectionList", collectionList);
 
-        return "collection";
+        return "/admin/collection";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/collection")
+    @RequestMapping(method = RequestMethod.POST, value = "/admin/collection")
     public String addCollection(@ModelAttribute("collection") @RequestParam("txtCollection")
-                              String name, CollectionEntity collectionEntity) {
+                                        String name, CollectionEntity collectionEntity) {
 
-            String path = "D:/" + name;
-            File fileDir = new File(path);
-            fileDir.mkdir();
+        String path = "D:/" + name;
+        File fileDir = new File(path);
+        fileDir.mkdir();
 
-            collectionEntity.setName(name);
-            int id = (int) (Math.random() * 1000);
-            collectionEntity.setId(id);
+        collectionEntity.setName(name);
+        int id = (int) (Math.random() * 1000);
+        collectionEntity.setId(id);
 
-            String key = getToken(10);
-            collectionEntity.setKey(key);
+        String key = getToken(10);
+        collectionEntity.setKey(key);
 
-            collectionRepository.saveAndFlush(collectionEntity);
-            return "redirect:/collection";
+        collectionRepository.saveAndFlush(collectionEntity);
+        return "redirect:/admin/collection";
     }
 
     private static final Random random = new Random();

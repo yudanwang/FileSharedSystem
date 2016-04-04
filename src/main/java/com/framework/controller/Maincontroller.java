@@ -5,9 +5,7 @@ package com.framework.controller;
  */
 
 import com.framework.model.ArtifactEntity;
-import com.framework.model.CollectionEntity;
 import com.framework.repository.ArtifactRepository;
-import com.framework.repository.CollectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,24 +15,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-public class Maincontroller {
+public class MainController {
+
     @Autowired
     ArtifactRepository artifactRepository;
-    CollectionRepository collectionRepository;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
         return "index";
     }
 
-    @RequestMapping(value = "/artifact", method = RequestMethod.GET)
-    public String getUsers(ModelMap modelMap) {
+    @RequestMapping(value = "/admin/artifact", method = RequestMethod.GET)
+    public String showArtifacts(ModelMap modelMap) {
 
         List<ArtifactEntity> artifactList = artifactRepository.findAll();
-        long a = artifactRepository.count();
         modelMap.addAttribute("artifactList", artifactList);
-
-        return "artifact";
+        return "admin/collectionInfo";
     }
-
 }

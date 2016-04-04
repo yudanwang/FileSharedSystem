@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import java.io.File;
 
 @Controller
@@ -19,7 +20,7 @@ public class FileDeleteController {
     @Autowired
     ArtifactRepository artifactRepository;
 
-    @RequestMapping(value = "/artifact/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/artifact/delete/{id}", method = RequestMethod.GET)
     public String deleteUser(@PathVariable("id") Integer artifactId) {
 
         ArtifactEntity artifactEntity = artifactRepository.findOne(artifactId);
@@ -29,6 +30,6 @@ public class FileDeleteController {
 
         artifactRepository.delete(artifactId);
         artifactRepository.flush();
-        return "redirect:/artifact";
+        return "redirect:/admin/artifact";
     }
 }

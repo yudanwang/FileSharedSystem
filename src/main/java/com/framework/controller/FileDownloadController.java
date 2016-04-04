@@ -3,6 +3,7 @@ package com.framework.controller;
 /**
  * Created by WangYudan on 2016/3/19.
  */
+
 import com.framework.model.ArtifactEntity;
 import com.framework.repository.ArtifactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -25,10 +27,10 @@ public class FileDownloadController {
 
     private static final int BUFFER_SIZE = 4096;
 
-    @RequestMapping(value = "/artifact/download/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/artifact/download/{id}", method = RequestMethod.GET)
     public String download(@PathVariable("id") Integer artifactId,
-                             HttpServletRequest request,
-                             HttpServletResponse response)throws IOException {
+                           HttpServletRequest request,
+                           HttpServletResponse response) throws IOException {
 
         ArtifactEntity artifactEntity = artifactRepository.findOne(artifactId);
         String name = artifactEntity.getName();
@@ -56,6 +58,6 @@ public class FileDownloadController {
         inputStream.close();
         outStream.close();
 
-        return "redirect:/artifact";
+        return "redirect:/admin/artifact";
     }
 }

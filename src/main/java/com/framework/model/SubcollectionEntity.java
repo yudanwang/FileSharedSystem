@@ -1,17 +1,17 @@
 package com.framework.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
- * Created by Abi on 2016-03-23.
+ * Created by WangYudan on 2016/4/3.
  */
 @Entity
-@Table(name = "artifact", schema = "public", catalog = "postgres")
-public class ArtifactEntity {
+@Table(name = "subcollection", schema = "public", catalog = "postgres")
+public class SubcollectionEntity {
     private int id;
     private String name;
-    private List<CollectionEntity> collectionById;
+    private int pid;
+    private CollectionEntity coById;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -33,14 +33,25 @@ public class ArtifactEntity {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "pid", nullable = true)
+    public int getPid() {
+        return pid;
+    }
+
+    public void setPid(int pid) {
+        this.pid = pid;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ArtifactEntity that = (ArtifactEntity) o;
+        SubcollectionEntity that = (SubcollectionEntity) o;
 
         if (id != that.id) return false;
+        if (pid != that.pid) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
         return true;
@@ -50,16 +61,17 @@ public class ArtifactEntity {
     public int hashCode() {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + pid;
         return result;
     }
 
-    @ManyToMany
-    @JoinTable(name = "artifact_collection", catalog = "postgres", schema = "public", joinColumns = @JoinColumn(name = "artifact_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "collection_id", referencedColumnName = "id"))
-    public List<CollectionEntity> getCollectionById() {
-        return collectionById;
+    @ManyToOne
+    @JoinColumn(name = "pid", referencedColumnName = "id",insertable = false, updatable = false)
+    public CollectionEntity getCoById() {
+        return coById;
     }
 
-    public void setCollectionById(List<CollectionEntity> collectionById) {
-        this.collectionById = collectionById;
+    public void setCoById(CollectionEntity coById) {
+        this.coById = coById;
     }
 }
