@@ -13,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>File Shared System</title>
+    <title>SharedCollectionSystem</title>
 
 
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -26,11 +26,9 @@
     <![endif]-->
 </head>
 <body>
-<h1>Shared File System</h1>
+<h1>Shared Collection System</h1>
 
-<h3>Collection
-    <a href="/admin/collection" type="button" class="btn btn-primary btn-sm">Enter</a>
-</h3>
+<h3><a href="/admin/collection" type="button" class="btn btn-primary btn-sm">Enter</a></h3>
 
 
 

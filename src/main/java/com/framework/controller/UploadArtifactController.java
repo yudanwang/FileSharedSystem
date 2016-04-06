@@ -19,7 +19,7 @@ import java.io.File;
 import java.io.IOException;
 
 @Controller
-public class FileUploadController {
+public class UploadArtifactController {
 
     @Autowired
     ArtifactRepository artifactRepository;

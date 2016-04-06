@@ -19,7 +19,7 @@ import java.io.IOException;
  */
 
 @Controller
-public class FileUpdateController {
+public class UpdateArtifactController {
 
     @Autowired
     ArtifactRepository artifactRepository;

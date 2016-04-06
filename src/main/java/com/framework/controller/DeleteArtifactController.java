@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.io.File;
 
 @Controller
-public class FileDeleteController {
+public class DeleteArtifactController {
 
     @Autowired
     ArtifactRepository artifactRepository;

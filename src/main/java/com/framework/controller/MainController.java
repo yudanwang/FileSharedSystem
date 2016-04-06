@@ -23,11 +23,4 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping(value = "/admin/artifact", method = RequestMethod.GET)
-    public String showArtifacts(ModelMap modelMap) {
-
-        List<ArtifactEntity> artifactList = artifactRepository.findAll();
-        modelMap.addAttribute("artifactList", artifactList);
-        return "admin/collectionInfo";
-    }
 }

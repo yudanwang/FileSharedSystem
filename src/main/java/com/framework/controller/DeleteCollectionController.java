@@ -35,10 +35,10 @@ public class DeleteCollectionController {
         deleteFile(name);
         collectionRepository.delete(collectionId);
         collectionRepository.flush();
-        
         if (subCollectionRepository.exists(collectionId)){
             subCollectionRepository.delete(collectionId);
             subCollectionRepository.flush();
+
         }
 
 
@@ -47,6 +47,12 @@ public class DeleteCollectionController {
     }
 
     public void deleteAll(int collectionId){
+
+        List<ArtifactCollectionEntity> arco = arCoRepository.artilist(collectionId);
+        if (!arco.isEmpty()){
+            arCoRepository.delete(arco);
+            arCoRepository.flush();
+        }
 
         List<Integer> subIdList = subCollectionRepository.getId(collectionId);
         if(!subIdList.isEmpty()){
@@ -58,7 +64,7 @@ public class DeleteCollectionController {
             List<SubcollectionEntity> subCollection = subCollectionRepository.sublist(collectionId);
             List<String> subCollectionList = subCollectionRepository.name(collectionId);
             List<CollectionEntity> collection = collectionRepository.deleteCollection(collectionId);
-            List<ArtifactCollectionEntity> arco = arCoRepository.artilist(collectionId);
+
 
             int[] cid = new int[subCollectionList.size()];
             if (!subCollection.isEmpty() || !arco.isEmpty()){
@@ -74,7 +80,7 @@ public class DeleteCollectionController {
                     collectionRepository.delete(cid[i]);
                     collectionRepository.flush();
                 }
-                arCoRepository.delete(arco);
+
             }
 
         }

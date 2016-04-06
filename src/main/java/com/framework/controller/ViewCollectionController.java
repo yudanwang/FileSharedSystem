@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-public class CollectionViewController {
+public class ViewCollectionController {
 
     @Autowired
     CollectionRepository collectionRepository;

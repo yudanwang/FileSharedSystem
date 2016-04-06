@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 @Controller
-public class FileDownloadController {
+public class DownloadArtifactController {
 
     @Autowired
     ArtifactRepository artifactRepository;
