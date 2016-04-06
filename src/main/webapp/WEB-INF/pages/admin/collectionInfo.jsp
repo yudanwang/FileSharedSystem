@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Artifact Management</title>
+    <title>Collection Management</title>
 
 
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -22,7 +22,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>Collection Management</h1>
+    <h1>Collection ${name}</h1>
     <hr/>
 
     <h3>Artifacts List

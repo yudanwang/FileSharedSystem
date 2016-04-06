@@ -43,6 +43,10 @@ public class ViewCollectionController {
 
         modelMap.addAttribute("collectionId", collectionId);
 
+        String name = collectionRepository.name(collectionId);
+
+        modelMap.addAttribute("name", name);
+
         return "admin/collectionInfo";
     }
 }
