@@ -45,7 +45,7 @@ public class RemoveElementController {
         int idd = arCoRepository.removeId(id,collectionId);
         arCoRepository.delete(idd);
         arCoRepository.flush();
-        return "admin/collection";
+        return "redirect:/admin/collection/view/" + collectionId;
     }
 
     @RequestMapping(value = "/admin/collection/view/{collectionId}/removec", method = RequestMethod.GET)
@@ -63,6 +63,6 @@ public class RemoveElementController {
                                    SubcollectionEntity subcollectionEntity){
         subCollectionRepository.delete(id);
         subCollectionRepository.flush();
-        return "admin/collection";
+        return "redirect:/admin/collection/view/" + collectionId;
     }
 }

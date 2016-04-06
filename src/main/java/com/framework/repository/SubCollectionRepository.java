@@ -23,5 +23,5 @@ public interface SubCollectionRepository extends JpaRepository<SubcollectionEnti
     List<String> name(@Param("pId") int id);
 
     @Query("select subcollection.id from SubcollectionEntity subcollection where subcollection.pid=:pId")
-    List getId(@Param("pId") int id);
+    List<Integer> getId(@Param("pId") int id);
 }

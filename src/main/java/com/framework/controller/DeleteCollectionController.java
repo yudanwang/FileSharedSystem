@@ -31,37 +31,53 @@ public class DeleteCollectionController {
 
         CollectionEntity collectionEntity = collectionRepository.findOne(collectionId);
         String name = collectionEntity.getName();
-
-        List<SubcollectionEntity> subCollection = subCollectionRepository.sublist(collectionId);
-        List<String> subCollectionList = subCollectionRepository.name(collectionId);
-        List<CollectionEntity> collection = collectionRepository.deleteCollection(collectionId);
-        List<ArtifactCollectionEntity> arco = arCoRepository.artilist(collectionId);
-
-        int[] cid = new int[subCollectionList.size()];
-
-        if (!subCollection.isEmpty()){
-            for(int i=0; i<=subCollectionList.size()-1;i++){
-                String na = subCollectionList.get(i);
-                cid[i] = collectionRepository.deleteId(na);
-                deleteFile(na);
-
-            }
-            subCollectionRepository.delete(subCollection);
-
-            for(int i =0; i<= cid.length-1; i++){
-                System.out.println(i);
-                collectionRepository.delete(cid[i]);
-                collectionRepository.flush();
-            }
-            arCoRepository.delete(arco);
-
-        }
+        deleteAll(collectionId);
         deleteFile(name);
         collectionRepository.delete(collectionId);
         collectionRepository.flush();
+        
+        if (subCollectionRepository.exists(collectionId)){
+            subCollectionRepository.delete(collectionId);
+            subCollectionRepository.flush();
+        }
+
 
         return "redirect:/admin/collection";
 
+    }
+
+    public void deleteAll(int collectionId){
+
+        List<Integer> subIdList = subCollectionRepository.getId(collectionId);
+        if(!subIdList.isEmpty()){
+            for(int i=0; i<=subIdList.size()-1;i++){
+                int id = subIdList.get(i);
+                deleteAll(id);
+            }
+
+            List<SubcollectionEntity> subCollection = subCollectionRepository.sublist(collectionId);
+            List<String> subCollectionList = subCollectionRepository.name(collectionId);
+            List<CollectionEntity> collection = collectionRepository.deleteCollection(collectionId);
+            List<ArtifactCollectionEntity> arco = arCoRepository.artilist(collectionId);
+
+            int[] cid = new int[subCollectionList.size()];
+            if (!subCollection.isEmpty() || !arco.isEmpty()){
+                for(int i=0; i<=subCollectionList.size()-1;i++){
+                    String na = subCollectionList.get(i);
+                    cid[i] = collectionRepository.deleteId(na);
+                    deleteFile(na);
+                }
+                subCollectionRepository.delete(subCollection);
+
+                for(int i =0; i<= cid.length-1; i++){
+                    System.out.println(i);
+                    collectionRepository.delete(cid[i]);
+                    collectionRepository.flush();
+                }
+                arCoRepository.delete(arco);
+            }
+
+        }
     }
     public static void deleteFile(String name){
         String path = "D:/" + name;
