@@ -37,7 +37,7 @@ public class CollectionViewController {
 
         modelMap.addAttribute("artifactList", artifactList);
 
-        List<SubcollectionEntity> subcollectionList = subCollectionRepository.findAll();
+        List<SubcollectionEntity> subcollectionList = subCollectionRepository.sublist(collectionId);
 
         modelMap.addAttribute("subcollectionList", subcollectionList);
 
