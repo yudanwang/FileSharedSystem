@@ -37,7 +37,7 @@
     <hr/>
 
     <h4> Shared Collection </h4>
-    <form action="/admin/collection/shared" method="post" enctype="multipart/form-data">
+    <form action="/admin/collection/shared/" method="post" enctype="multipart/form-data">
         <input type="text" name="token" />
         <input type="submit" value="Enter Collection" />
     </form>
@@ -67,8 +67,7 @@
                     <td>${collection.key}</td>
                     <td>
                         <a href="/admin/collection/view/${collection.id}" type="button" class="btn btn-sm btn-success">View</a>
-                        <a href="/admin/users/update/${collection.id}" type="button" class="btn btn-sm btn-warning">Update</a>
-                        <a href="/admin/users/delete/${collection.id}" type="button" class="btn btn-sm btn-danger">Delete</a>
+                        <a href="/admin/collection/delete/${collection.id}" type="button" class="btn btn-sm btn-danger">Delete</a>
                     </td>
                 </tr>
             </c:forEach>

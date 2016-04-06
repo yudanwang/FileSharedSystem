@@ -30,6 +30,6 @@ public class FileDeleteController {
 
         artifactRepository.delete(artifactId);
         artifactRepository.flush();
-        return "redirect:/admin/artifact";
+        return "redirect:/admin/collection";
     }
 }

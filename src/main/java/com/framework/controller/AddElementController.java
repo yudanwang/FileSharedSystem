@@ -54,7 +54,7 @@ public class AddElementController {
         artifactCollectionEntity.setArtifactId(id);
         arCoRepository.saveAndFlush(artifactCollectionEntity);
 
-        return "redirect:/admin/collection";
+        return "redirect:/admin/collection/view/" + collectionId;
     }
 
     @RequestMapping(value = "/admin/collection/view/{collectionId}/addc", method = RequestMethod.GET)
@@ -81,6 +81,6 @@ public class AddElementController {
         subcollectionEntity.setName(name);
         subCollectionRepository.saveAndFlush(subcollectionEntity);
 
-        return "/admin/collection";
+        return "redirect:/admin/collection/view/" + collectionId;
     }
 }

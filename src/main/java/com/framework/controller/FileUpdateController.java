@@ -4,6 +4,7 @@ import com.framework.model.ArtifactEntity;
 import com.framework.repository.ArtifactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,10 +34,8 @@ public class FileUpdateController {
         return "/admin/fileupdate";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/update")
-    public String fileUpload(@RequestParam("fileUpdate")
-                                     CommonsMultipartFile file) {
-
+    @RequestMapping(method = RequestMethod.POST, value = "/admin/collection/view/update")
+    public String fileUpload(@RequestParam("fileUpdate") CommonsMultipartFile file) {
 
         if (!file.isEmpty()) {
             String path = "D:/" + file.getOriginalFilename();
@@ -49,6 +48,6 @@ public class FileUpdateController {
                 e.printStackTrace();
             }
         }
-        return "redirect:/admin/artifact";
+        return "redirect:/admin/collection";
     }
 }

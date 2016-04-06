@@ -49,7 +49,6 @@ public class DeleteCollectionController {
             subCollectionRepository.delete(subCollection);
 
             for(int i =0; i<= cid.length-1; i++){
-
                 System.out.println(i);
                 collectionRepository.delete(cid[i]);
                 collectionRepository.flush();
@@ -61,7 +60,7 @@ public class DeleteCollectionController {
         collectionRepository.delete(collectionId);
         collectionRepository.flush();
 
-        return "/admin/collection";
+        return "redirect:/admin/collection";
 
     }
     public static void deleteFile(String name){

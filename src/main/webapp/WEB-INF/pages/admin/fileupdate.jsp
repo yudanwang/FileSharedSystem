@@ -28,7 +28,7 @@
 
 <body>
 <%--<form action="user/fileUpload" method="post" enctype="multipart/form-data">--%>
-<form action="/update" method="post" enctype="multipart/form-data">
+<form action="/admin/collection/view/update" method="post" enctype="multipart/form-data">
     <input type="file" name="fileUpdate" />
     <input type="submit" value="update" />
 </form>

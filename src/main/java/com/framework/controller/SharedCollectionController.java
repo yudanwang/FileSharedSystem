@@ -5,15 +5,14 @@ package com.framework.controller;
  */
 
 import com.framework.model.ArtifactEntity;
+import com.framework.model.SubcollectionEntity;
 import com.framework.repository.ArtifactRepository;
 import com.framework.repository.CollectionRepository;
+import com.framework.repository.SubCollectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,9 +25,13 @@ public class SharedCollectionController {
     @Autowired
     ArtifactRepository artifactRepository;
 
+    @Autowired
+    SubCollectionRepository subCollectionRepository;
+
+
     @RequestMapping(method = RequestMethod.POST, value = "/admin/collection/shared")
-    public String shared(@ModelAttribute("collection") @RequestParam("token")
-                                 String token, ModelMap modelMap) {
+    public String shared(@ModelAttribute("collection") @RequestParam("token") String token ,
+                         ModelMap modelMap) {
 
         List keys = collectionRepository.key();
 
@@ -38,7 +41,13 @@ public class SharedCollectionController {
 
             List<ArtifactEntity> artifactList = artifactRepository.info(id);
 
+            List<SubcollectionEntity> subcollectionList = subCollectionRepository.sublist(id);
+
             modelMap.addAttribute("artifactList", artifactList);
+
+            modelMap.addAttribute("subcollectionList", subcollectionList);
+
+            modelMap.addAttribute("collectionId", id);
 
             return "admin/collectionInfo";
         }
